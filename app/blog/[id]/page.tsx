@@ -3,6 +3,7 @@ import { cn } from "@/lib/cn";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Date } from "./page.client";
+import { createMetadata } from "@/lib/metadata";
 
 export default function Page({ params }: { params: { id: string } }) {
   const document = documents.find((d) => d.id === params.id);
@@ -51,4 +52,19 @@ export function generateStaticParams() {
   return documents.map((d) => ({
     id: d.id,
   }));
+}
+
+export function generateMetadata({ params }: { params: { id: string } }) {
+  const document = documents.find((d) => d.id === params.id);
+  if (!document) notFound();
+
+  return createMetadata({
+    title: document.info.title,
+    description: document.info.description,
+    openGraph: {
+      type: "article",
+      authors: "Fuma Nama",
+      modifiedTime: document.info.date.toISOString(),
+    },
+  });
 }

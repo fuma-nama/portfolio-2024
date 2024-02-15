@@ -1,5 +1,11 @@
+import { createMetadata } from "@/lib/metadata";
 import { documents } from "../source";
 import { Card } from "./card";
+
+export const metadata = createMetadata({
+  title: "Blog",
+  description: "My precious thoughts and inspirations.",
+});
 
 export default function Page() {
   return (

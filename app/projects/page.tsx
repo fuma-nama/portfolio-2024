@@ -1,3 +1,10 @@
+import { createMetadata } from "@/lib/metadata";
+
+export const metadata = createMetadata({
+  title: "Projects",
+  description: "My proud, high-quality treasures.",
+});
+
 const projects: (ProjectProps & { tag: string })[] = [
   {
     tag: "project",
