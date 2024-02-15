@@ -6,10 +6,18 @@ export function createMetadata(override: Metadata): Metadata {
   return {
     ...override,
     openGraph: {
+      type: "website",
       title: override.title ?? undefined,
       description: override.description ?? undefined,
       url: baseUrl,
-      images: "/banner.png",
+      images: [
+        {
+          alt: "banner",
+          width: "1200",
+          height: "630",
+          url: "/banner.png",
+        },
+      ],
       siteName: "Portfolio",
       ...override.openGraph,
     },
@@ -17,7 +25,14 @@ export function createMetadata(override: Metadata): Metadata {
       card: "summary_large_image",
       title: override.title ?? undefined,
       description: override.description ?? undefined,
-      images: "/banner.png",
+      images: [
+        {
+          alt: "banner",
+          width: "1200",
+          height: "630",
+          url: "/banner.png",
+        },
+      ],
       ...override.twitter,
     },
     metadataBase: new URL(baseUrl),
