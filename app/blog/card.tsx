@@ -13,7 +13,7 @@ export function Card({
   const [date, setDate] = useState("");
 
   useEffect(() => {
-    setDate(info.date.toDateString());
+    setDate(info.date.toLocaleDateString(undefined, { dateStyle: "medium" }));
   }, [info.date]);
 
   return (

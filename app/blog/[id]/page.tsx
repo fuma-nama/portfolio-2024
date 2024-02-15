@@ -2,6 +2,7 @@ import { documents } from "@/app/source";
 import { cn } from "@/lib/cn";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Date } from "./page.client";
 
 export default function Page({ params }: { params: { id: string } }) {
   const document = documents.find((d) => d.id === params.id);
@@ -26,7 +27,11 @@ export default function Page({ params }: { params: { id: string } }) {
           }}
         />
       </article>
-      <footer className="flex flex-row items-end justify-between bg-neutral-900 border border-neutral-800 rounded-xl p-4 my-12">
+      <p className="mt-8 text-sm">
+        <span className="font-medium mr-1">Last Updated:</span>
+        <Date className="text-neutral-400" value={document.info.date} />
+      </p>
+      <footer className="flex flex-row items-end justify-between bg-neutral-900 border border-neutral-800 rounded-xl p-4 mt-4">
         <div>
           <p className="text-sm font-medium text">Fuma Nama</p>
           <p className="text-sm text-neutral-400">An open-sourcerer.</p>
