@@ -1,0 +1,101 @@
+---
+title: Item Sorting in SQL
+description: Implement sorting in SQL
+date: 2023-07-18T16:00:00.000Z
+---
+
+## Item Sorting in SQL
+
+While I was working on a side project, I tried to implement item sorting in MySQL. Surprisingly, this seems to be a peculiarly difficult task.
+
+### Linked List
+
+From my mindset of algorithms, we can use a linked list to store the order of items to construct the list.
+
+```sql
+create table item (
+    id int primary key auto_increment,
+    next_id int
+)
+```
+
+The example above is quite simple, next_id refers to the next item. Whenever the user moved an item, we will update thre previous predecessor, the new predecessor, and the node itself.
+
+Since we know the new position of the item on client-side:
+
+```json
+{
+  "id": 10,
+  "to": 5
+}
+```
+
+We can move node "10" to the next node of "5". A destination of null refers to the top position of list.
+
+#### Details
+
+1. Select the target node (target) and new predecessor (to)
+2. Update predecessor
+
+```sql
+update item set next_id = <target>.next_id where node.next_id = <target>.id
+```
+3. Update the new predecessor (if exists)
+
+```sql
+update item set next_id = <target>.id where id = <to>.id
+```
+
+4. Update the node itself
+
+```sql
+update item set next_id = <to>.next_id where id = <target>.id
+```
+
+When the users request the list, select all items and construct it dynamically. (starting from tail)
+
+#### Problems
+
+The standard linked list approach seems to be worse for a SQL database, even though we can do all this in a transaction. 
+
+Actually, every movement performs a "remove" and "add" operation.
+More worse, It adds extra cost to delete items from the list.
+
+
+### Optimized List
+
+Considering the performance and stability, there should be a better solution that uses `SORT BY` and maximize the benefits of SQL databases.
+
+We can sort the items by an `order_id`. Whenever an item is moved, we set the `order_id` to be the destination and move the other items forward or backward.
+
+#### Details
+
+Let the previous order id of the item to be `p`:
+
+If the item moves upwards, increase the order id of items between destination and `p` by one.
+
+The same applies, if the item moves downwards, decrease the order id of items between destination and `p` by one.
+
+Finally, update the order id of target node.
+
+This approach gave us the best query speed but still with a `O(n)` time complexity in updating order.
+
+#### Problems
+
+For each item insertion, we have to find the largest order id in the list.
+
+If we want to insert a item at index 0, all rows will be updated.
+
+### JSON
+
+As you may notice, indexing the order of items is not needed in our use case, it should be fine to use JSON directly. In fact, this is my final approach considering of its excellent performance.
+
+When a item is moved, we receive the full list from client-side:
+
+```json
+[1,5,2,4,3]
+```
+
+Then we validate the data and store it into the database. When the list is being requested, we construct it dynamically.
+
+All items with an undefined order would be at the bottom. If the item doesn't exist (e.g. deleted), we'll ignore it.
