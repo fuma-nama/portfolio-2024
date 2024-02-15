@@ -1,9 +1,10 @@
 import { resolve } from "node:url";
 import { MetadataRoute } from "next";
 import { documents } from "./source";
+import { baseUrl } from "@/lib/metadata";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const getUrl = (v: string) => resolve("https://fuma-nama.vercel.app", v);
+  const getUrl = (v: string) => resolve(baseUrl, v);
 
   return [
     {

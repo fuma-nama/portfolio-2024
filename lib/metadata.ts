@@ -1,12 +1,14 @@
 import type { Metadata } from "next/types";
 
+export const baseUrl = "https://fuma-nama.vercel.app";
+
 export function createMetadata(override: Metadata): Metadata {
   return {
     ...override,
     openGraph: {
       title: override.title ?? undefined,
       description: override.description ?? undefined,
-      url: "https://fuma-nama.vercel.app",
+      url: baseUrl,
       images: "/banner.png",
       siteName: "Portfolio",
       ...override.openGraph,
@@ -18,10 +20,6 @@ export function createMetadata(override: Metadata): Metadata {
       images: "/banner.png",
       ...override.twitter,
     },
-    metadataBase: new URL(
-      process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : "http://localhost:3000"
-    ),
+    metadataBase: new URL(baseUrl),
   };
 }
