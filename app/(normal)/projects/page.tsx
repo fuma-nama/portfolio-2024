@@ -160,7 +160,9 @@ function Project(project: ProjectProps) {
       <p className="text-sm font-medium group-hover:underline">
         {project.name}
       </p>
-      <p className="text-sm text-neutral-400">{project.description}</p>
+      <p className="text-sm text-neutral-400 group-hover:text-neutral-200">
+        {project.description}
+      </p>
     </a>
   );
 }

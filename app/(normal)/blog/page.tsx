@@ -1,5 +1,5 @@
 import { createMetadata } from "@/lib/metadata";
-import { documents } from "../source";
+import { documents } from "../../source";
 import { Card } from "./card";
 
 export const metadata = createMetadata({
