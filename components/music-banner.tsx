@@ -7,13 +7,13 @@ export function MusicBanner() {
   return (
     <div className="not-prose grid grid-cols-3 gap-4 rounded-xl bg-neutral-900 border border-neutral-800 p-2">
       <Image
-        alt="eve"
-        src={Eve}
+        alt="iori"
+        src={Iori}
         className="col-span-2 row-span-2 object-cover size-full rounded-md"
       />
       <Image
-        alt="iori"
-        src={Iori}
+        alt="eve"
+        src={Eve}
         className="col-start-3 row-start-1 object-cover size-full rounded-md"
       />
       <Image

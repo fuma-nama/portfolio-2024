@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/cn";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 export default function Page() {
@@ -61,7 +62,7 @@ export default function Page() {
     };
   }, []);
 
-  const user = "Joulev";
+  const user = "Fuma";
 
   return (
     <div
@@ -74,7 +75,7 @@ export default function Page() {
           className="bg-neutral-950/60 backdrop-blur-3xl p-4 rounded-2xl border border-neutral-700/30 flex flex-row gap-4 shadow-xl shadow-neutral-950/50"
         >
           <div className="flex flex-col gap-1.5 bg-neutral-600/20 border border-neutral-500/30 rounded-xl p-1 w-[20%] h-[400px]">
-            {["Joulev", "Fuma", "John", "Alfonsus"].map((name) => (
+            {["Fuma", "Joulev", "John", "Alfonsus"].map((name) => (
               <User key={name} name={name} active={name === user} />
             ))}
             <button className="mt-auto border border-neutral-500/30 rounded-lg p-2 text-xs font-medium bg-neutral-500/30 transition-colors hover:bg-neutral-400/30">
@@ -82,23 +83,24 @@ export default function Page() {
             </button>
           </div>
           <div className="flex flex-col flex-1">
-            <h2 className="text-lg font-semibold">Hello There, Fuma</h2>
+            <h2 className="text-lg font-semibold">Hello There, My friend</h2>
             <p className="text-sm text-neutral-400">New messages.</p>
-            <div className="flex flex-row gap-2 mt-4 p-2 bg-neutral-600/30 rounded-lg">
-              <img
-                src={`https://i.pravatar.cc/40?u=${user}`}
-                alt="avatar"
-                className="size-6 rounded-full"
-              />
-              <div>
-                <p className="text-xs font-medium">Joulev</p>
-                <p className="text-neutral-400 text-xs">
-                  I thought you won't be here anymore.
-                </p>
-              </div>
-            </div>
+            <Message name={user}>
+              <p className="text-neutral-400 text-xs">
+                I thought you won't be here anymore.
+              </p>
+            </Message>
+            <Message name={user}>
+              <Link
+                href="/webgl"
+                className="px-2 py-1 rounded-lg text-xs text-neutral-900 font-medium bg-neutral-50/80 transition-colors hover:bg-neutral-200/80"
+              >
+                WebGL
+              </Link>
+            </Message>
+
             <div className="mt-auto flex flex-row items-center gap-2 p-2 border border-neutral-500/30 bg-neutral-600/20 rounded-xl">
-              <button className="rounded-full p-1.5 text-neutral-800 bg-neutral-200/60 hover:bg-neutral-400/60">
+              <button className="rounded-full p-1.5 text-neutral-900 bg-neutral-50/80 hover:bg-neutral-200/80">
                 <svg
                   className="size-3"
                   width="24"
@@ -118,6 +120,28 @@ export default function Page() {
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function Message({
+  name,
+  children,
+}: {
+  name: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex flex-row gap-2 mt-4 p-2 bg-neutral-600/30 rounded-lg">
+      <img
+        src={`https://i.pravatar.cc/40?u=${name}`}
+        alt="avatar"
+        className="size-6 rounded-full"
+      />
+      <div>
+        <p className="text-xs font-medium">{name}</p>
+        {children}
       </div>
     </div>
   );
