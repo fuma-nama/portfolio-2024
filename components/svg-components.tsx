@@ -44,7 +44,7 @@ export function SVGButton() {
 
 export function SVGCircle() {
   return (
-    <svg className="-mb-4 -mt-6 h-[400px] w-full md:-mt-16">
+    <svg className="h-[400px] w-full">
       <filter id="noiseFilter">
         <feTurbulence type="turbulence" baseFrequency="0.67" numOctaves="2" />
         <feColorMatrix type="saturate" values="0" />
