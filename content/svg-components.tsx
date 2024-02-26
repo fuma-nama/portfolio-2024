@@ -1,0 +1,99 @@
+export function SVGButton() {
+  return (
+    <button className="relative mt-2 px-4 py-2 text-sm text-neutral-50 font-medium">
+      <svg className="absolute inset-0 z-[-1] size-full" overflow="visible">
+        <linearGradient id="borderGradient" x1="0" x2="0" y1="0" y2="1">
+          <animateTransform
+            attributeName="gradientTransform"
+            type="rotate"
+            values="0 0 0;360 0 0"
+            dur="2s"
+            repeatCount="indefinite"
+          />
+          <stop offset="0%" stopColor="rgb(50,50,50)" />
+          <stop offset="75%" stopColor="white" />
+          <stop offset="100%" stopColor="rgb(50,50,50)" />
+        </linearGradient>
+        <linearGradient id="bgGradient" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stopColor="rgb(50,50,50)" />
+          <stop offset="100%" stopColor="black" />
+        </linearGradient>
+        <filter id="shadow">
+          <feDropShadow
+            dx="0"
+            dy="2"
+            stdDeviation="4"
+            floodColor="white"
+            floodOpacity="0.2"
+          />
+        </filter>
+        <rect
+          width="100%"
+          height="100%"
+          stroke="url(#borderGradient)"
+          strokeWidth="1"
+          fill="url(#bgGradient)"
+          filter="url(#shadow)"
+          rx="8"
+        />
+      </svg>
+      <p>Press Me</p>
+    </button>
+  );
+}
+
+export function SVGCircle() {
+  return (
+    <svg className="-mb-4 -mt-6 h-[400px] w-full md:-mt-16">
+      <filter id="noiseFilter">
+        <feTurbulence type="turbulence" baseFrequency="0.67" numOctaves="2" />
+        <feColorMatrix type="saturate" values="0" />
+        <feComposite in2="SourceGraphic" operator="in" />
+        <feComposite in2="SourceGraphic" operator="lighter" />
+      </filter>
+
+      <filter id="circleShadow" colorInterpolationFilters="sRGB">
+        <feDropShadow dx="0" dy="8" stdDeviation="10" floodColor="black" />
+      </filter>
+
+      <defs>
+        <linearGradient id="Gradient1" x1="0" x2="0.5" y1="0" y2="1">
+          <stop stopColor="white" offset="20%" />
+          <stop stopColor="black" offset="100%" />
+        </linearGradient>
+      </defs>
+
+      <g width="100%" filter="url(#noiseFilter)">
+        <line x1="50%" y1="0%" x2="50%" y2="100%" stroke="rgb(100,100,100)" />
+        <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="rgb(100,100,100)" />
+        <circle cx="50%" cy="50%" r="180" stroke="rgb(10,10,10)" fill="none" />
+        <circle
+          cx="50%"
+          cy="50%"
+          r="80"
+          fill="url(#Gradient1)"
+          fillOpacity="0"
+          filter="url(#circleShadow)"
+          stroke="rgb(100,100,100)"
+          strokeDasharray="1000"
+          strokeDashoffset="1000"
+        >
+          <animate
+            attributeName="stroke-dashoffset"
+            values="1000;0;0"
+            dur="2000ms"
+            keyTimes="0;0.4;1"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="fill-opacity"
+            values="0;0;1;1"
+            dur="2000ms"
+            keyTimes="0;0.4;0.6;1"
+            repeatCount="indefinite"
+          />
+        </circle>
+      </g>
+    </svg>
+  );
+}
