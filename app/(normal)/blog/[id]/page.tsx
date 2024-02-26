@@ -17,7 +17,7 @@ export default function Page({ params }: { params: { id: string } }) {
             pre: ({ className, style: _style, ...props }) => (
               <pre
                 className={cn(
-                  "text-sm p-2 bg-neutral-900 border border-neutral-800 rounded-lg",
+                  "text-sm p-2 bg-neutral-900 border border-neutral-800 rounded-lg max-h-[500px] overflow-auto",
                   className
                 )}
                 {...props}
