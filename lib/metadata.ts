@@ -35,6 +35,8 @@ export function createMetadata(override: Metadata): Metadata {
       ],
       ...override.twitter,
     },
-    metadataBase: new URL(baseUrl),
+    metadataBase: new URL(
+      process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : baseUrl
+    ),
   };
 }
