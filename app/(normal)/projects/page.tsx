@@ -156,13 +156,13 @@ interface ProjectProps {
 
 function Project(project: ProjectProps) {
   return (
-    <a href={project.href} className="group py-2" rel="noreferrer noopener">
-      <p className="text-sm font-medium group-hover:underline">
-        {project.name}
-      </p>
-      <p className="text-sm text-neutral-400 group-hover:text-neutral-200">
-        {project.description}
-      </p>
+    <a
+      href={project.href}
+      className="group px-4 py-3 -mx-4 rounded-xl text-neutral-400 transition-colors hover:bg-neutral-900 hover:text-neutral-200"
+      rel="noreferrer noopener"
+    >
+      <p className="text-sm text-neutral-100 font-medium">{project.name}</p>
+      <p className="text-sm">{project.description}</p>
     </a>
   );
 }
