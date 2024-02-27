@@ -67,9 +67,9 @@ export default function Page() {
     >
       <div
         ref={boxRef}
-        className="relative w-[800px] flex-shrink-0 bg-neutral-950/60 backdrop-blur-3xl p-4 rounded-2xl border border-neutral-500/30 flex flex-row gap-4 shadow-xl shadow-neutral-950/50"
+        className="relative w-[400px] h-[400px] flex-shrink-0 bg-neutral-950/60 backdrop-blur-3xl p-4 rounded-2xl border border-neutral-500/30 flex flex-row gap-4 shadow-xl shadow-neutral-950/50 sm:w-[800px]"
       >
-        <div className="flex flex-col gap-1.5 bg-neutral-600/20 border border-neutral-500/30 rounded-xl p-1 w-[20%] h-[400px]">
+        <div className="flex flex-col gap-1.5 bg-neutral-600/20 border border-neutral-500/30 rounded-xl p-1 w-[20%] max-sm:hidden">
           {["Fuma", "Joulev", "John", "Alfonsus"].map((name) => (
             <User key={name} name={name} active={name === user} />
           ))}
