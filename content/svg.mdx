@@ -21,7 +21,14 @@ Aside from the CSS `::after` approach, you may also use a SVG for background.
 ```jsx
 <button className="relative mt-2 px-4 py-2 text-sm text-neutral-50 font-medium">
   <svg className="absolute inset-0 z-[-1] size-full" overflow="visible">
-    <linearGradient id="borderGradient" x1="0" x2="0" y1="0" y2="1">
+    <linearGradient
+      id="borderGradient"
+      x1="0"
+      x2="0"
+      y1="0"
+      y2="1"
+      gradientTransform="rotate(0 0 0)"
+    >
       <animateTransform
         attributeName="gradientTransform"
         type="rotate"

@@ -26,10 +26,17 @@ function Canvas() {
       <div className="flex flex-col items-center p-4">
         <Link
           href="/playground"
-          className="relative mt-2 px-4 py-2 text-sm font-medium"
+          className="relative mt-2 px-8 py-2 text-sm font-medium"
         >
           <svg className="absolute inset-0 z-[-1] size-full" overflow="visible">
-            <linearGradient id="borderGradient" x1="0" x2="0" y1="0" y2="1">
+            <linearGradient
+              id="borderGradient"
+              x1="0"
+              x2="0"
+              y1="0"
+              y2="1"
+              gradientTransform="rotate(0 0 0)"
+            >
               <animateTransform
                 attributeName="gradientTransform"
                 type="rotate"
