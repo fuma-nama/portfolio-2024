@@ -63,11 +63,11 @@ export default function Page() {
   return (
     <div
       ref={containerRef}
-      className="flex items-center justify-center bg-gradient-to-br from-cyan-400 to-pink-400 p-8 rounded-xl h-[800px] overflow-clip [perspective:2000px]"
+      className="flex items-center justify-center bg-gradient-to-br from-cyan-400 to-pink-400 p-8 rounded-xl h-[800px] [perspective:2000px]"
     >
       <div
         ref={boxRef}
-        className="relative w-[400px] h-[400px] flex-shrink-0 bg-neutral-950/60 backdrop-blur-3xl p-4 rounded-2xl border border-neutral-500/30 flex flex-row gap-4 shadow-xl shadow-neutral-950/50 sm:w-[800px]"
+        className="relative w-[94vw] h-[400px] max-w-[800px] flex-shrink-0 bg-neutral-950/60 backdrop-blur-3xl p-4 rounded-2xl border border-neutral-500/30 flex flex-row gap-4 shadow-xl shadow-neutral-950/50"
       >
         <div className="flex flex-col gap-1.5 bg-neutral-600/20 border border-neutral-500/30 rounded-xl p-1 w-[20%] max-sm:hidden">
           {["Fuma", "Joulev", "John", "Alfonsus"].map((name) => (
