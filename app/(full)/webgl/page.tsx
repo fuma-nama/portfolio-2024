@@ -3,27 +3,13 @@
 import { useEffect, useRef } from "react";
 import { createRenderer } from "./renderer";
 import Link from "next/link";
+import { Shell } from "@/components/ui/3d-shell";
 
 export default function Page() {
-  return <Canvas />;
-}
-
-function Canvas() {
-  const ref = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    if (!ref.current) return;
-    const renderer = createRenderer(ref.current);
-
-    return () => {
-      renderer.destroy();
-    };
-  }, []);
-
   return (
-    <main>
-      <canvas ref={ref} className="w-full h-[500px] rounded-xl" />
-      <div className="flex flex-col items-center p-4">
+    <Shell className="block p-0">
+      <Canvas />
+      <div className="-mb-8 flex flex-col items-center p-4">
         <Link
           href="/playground"
           className="relative mt-2 px-8 py-2 text-sm font-medium"
@@ -74,6 +60,21 @@ function Canvas() {
           <p>Back</p>
         </Link>
       </div>
-    </main>
+    </Shell>
   );
+}
+
+function Canvas() {
+  const ref = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const renderer = createRenderer(ref.current);
+
+    return () => {
+      renderer.destroy();
+    };
+  }, []);
+
+  return <canvas ref={ref} className="w-full h-full rounded-xl" />;
 }
