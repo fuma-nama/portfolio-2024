@@ -11,7 +11,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <article className="prose prose-sm prose-invert text-neutral-400">
+      <article className="prose prose-sm prose-invert text-neutral-400 prose-li:marker:text-neutral-300">
         <document.renderer
           components={{
             pre: ({ className, style: _style, ...props }) => (
