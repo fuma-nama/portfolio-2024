@@ -1,4 +1,5 @@
 import { Nav } from "@/components/nav";
+import { Shell } from "@/components/ui/3d-shell";
 
 export default function Layout({
   children,
@@ -8,7 +9,7 @@ export default function Layout({
   return (
     <main className="px-6 py-8">
       <Nav />
-      {children}
+      <Shell>{children}</Shell>
     </main>
   );
 }

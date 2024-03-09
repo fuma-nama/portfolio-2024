@@ -1,6 +1,6 @@
 "use client";
 
-import { Shell } from "@/components/ui/3d-shell";
+import { ExitButton } from "@/components/ui/3d-shell";
 import { cn } from "@/lib/cn";
 import Link from "next/link";
 
@@ -8,7 +8,7 @@ const user = "Fuma";
 
 export default function Page() {
   return (
-    <Shell>
+    <div className="flex flex-row gap-4 h-full">
       <div className="flex flex-col gap-1.5 bg-neutral-600/20 border border-neutral-500/30 rounded-xl p-1 w-[20%] max-sm:hidden">
         {["Fuma", "Joulev", "John", "Alfonsus"].map((name) => (
           <User key={name} name={name} active={name === user} />
@@ -54,26 +54,8 @@ export default function Page() {
           <p className="text-sm text-neutral-400">Type...</p>
         </div>
       </div>
-      <Link
-        href="/"
-        className="absolute top-4 right-4 p-1 rounded-lg transition-colors hover:bg-neutral-400/30"
-      >
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="size-4"
-        >
-          <path d="M18 6 6 18" />
-          <path d="m6 6 12 12" />
-        </svg>
-      </Link>
-    </Shell>
+      <ExitButton href="/" />
+    </div>
   );
 }
 
