@@ -27,6 +27,12 @@ const projects: (ProjectProps & { tag: string })[] = [
   },
   {
     tag: "project",
+    name: "Fuma Lofi",
+    description: "Some nice Lofi music and a music player.",
+    href: "https://fuma-lofi.vercel.app",
+  },
+  {
+    tag: "project",
     name: "Fuma Content",
     description: "A library for handling content.",
     href: "https://fuma-content.vercel.app",
