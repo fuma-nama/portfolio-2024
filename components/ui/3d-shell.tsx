@@ -1,10 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/cn";
-import Image from "next/image";
 import Link, { LinkProps } from "next/link";
-import { HTMLAttributes, useEffect, useRef } from "react";
-import BackgoundImage from "@/public/background.jpg";
+import { HTMLAttributes, useEffect, useId, useRef } from "react";
 
 export function Shell({
   children,
@@ -62,34 +60,55 @@ export function Shell({
   }, []);
 
   return (
-    <div className="relative flex items-center justify-center bg-neutral-900 p-8 rounded-xl h-[800px] [perspective:2000px]">
-      <Image
-        alt="background"
-        src={BackgoundImage}
-        className="absolute size-full object-cover rounded-xl"
-        priority
+    <div
+      ref={boxRef}
+      className={cn(
+        "relative w-[94vw] h-[400px] max-w-[800px] flex-shrink-0 bg-neutral-600/60 backdrop-blur-3xl p-4 rounded-2xl shadow-xl shadow-neutral-950/50",
+        className
+      )}
+      {...props}
+    >
+      <Border
+        color={[
+          "rgba(255,235,235, 0.5)",
+          "rgba(20,30,20, 0.5)",
+          "rgba(140,140,100, 0.5)",
+        ]}
       />
-      <div
-        ref={boxRef}
-        className={cn(
-          "relative w-[94vw] h-[400px] max-w-[800px] flex-shrink-0 bg-neutral-950/60 backdrop-blur-3xl p-4 rounded-2xl border border-neutral-500/30 shadow-xl shadow-neutral-950/50",
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
+      {children}
     </div>
+  );
+}
+
+export function Border({ color }: { color: string[] }) {
+  const id = useId();
+
+  return (
+    <svg className="absolute inset-0 size-full z-[-1]">
+      <linearGradient id={`${id}_border_gradient`} x1="0" x2="1" y1="0" y2="1">
+        {color.map((c, i) => (
+          <stop key={c} stopColor={c} offset={i / (color.length - 1)} />
+        ))}
+      </linearGradient>
+      <rect
+        width="100%"
+        height="100%"
+        stroke={`url(#${id}_border_gradient)`}
+        strokeWidth="4px"
+        fill="none"
+        rx="16px"
+      />
+    </svg>
   );
 }
 
 export function ExitButton(props: LinkProps) {
   return (
     <Link
+      {...props}
       className={cn(
         "absolute top-4 right-4 p-1 rounded-lg transition-colors hover:bg-neutral-400/30"
       )}
-      {...props}
     >
       <svg
         width="24"

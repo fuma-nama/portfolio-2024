@@ -2,14 +2,14 @@
 
 import { useEffect, useRef } from "react";
 import { createRenderer } from "./renderer";
-import { ExitButton } from "@/components/ui/3d-shell";
+import { ExitButton, Shell } from "@/components/ui/3d-shell";
 
 export default function Page() {
   return (
-    <div className="absolute inset-0">
+    <Shell className="p-0">
       <Canvas />
       <ExitButton href="/playground" />
-    </div>
+    </Shell>
   );
 }
 
